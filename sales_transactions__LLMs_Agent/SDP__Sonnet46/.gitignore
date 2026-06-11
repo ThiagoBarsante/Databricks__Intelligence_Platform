@@ -1,0 +1,7 @@
+.ai-dev-kit/
+.claude/
+.github/
+.vscode/
+
+.venv/
+.env

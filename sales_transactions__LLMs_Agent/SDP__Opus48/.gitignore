@@ -1,0 +1,9 @@
+.ai-dev-kit/
+.claude
+
+.venv/
+.env
+# Ignore all __pycache__ directories at any depth
+**/__pycache__/
+
+**/sales_transactions*.csv

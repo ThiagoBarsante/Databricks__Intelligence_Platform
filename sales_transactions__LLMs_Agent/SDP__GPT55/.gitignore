@@ -1,0 +1,6 @@
+.agents/
+.ai-dev-kit/
+.codex/
+
+.venv/
+.env

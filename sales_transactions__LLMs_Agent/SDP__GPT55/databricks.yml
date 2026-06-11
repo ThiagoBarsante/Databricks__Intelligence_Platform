@@ -1,0 +1,30 @@
+bundle:
+  name: sales_medallion_gpt55
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    default: gpt55_codex
+  bronze_schema:
+    default: sales_bronze
+  silver_schema:
+    default: sales_silver
+  gold_schema:
+    default: sales_gold
+  source_path:
+    default: /Volumes/gpt55_codex/dw_raw/raw_data
+
+targets:
+  dev:
+    default: true
+    mode: production
+    workspace:
+      root_path: /Workspace/Users/XPTO--@email.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: gpt55_codex
+      bronze_schema: sales_bronze
+      silver_schema: sales_silver
+      gold_schema: sales_gold
+      source_path: /Volumes/gpt55_codex/dw_raw/raw_data

@@ -1,0 +1,24 @@
+resources:
+  pipelines:
+    pipeline_sales_medallion_gpt55_v1:
+      name: pipeline_sales_medallion_gpt55_v1
+      catalog: ${var.catalog}
+      target: ${var.bronze_schema}
+      serverless: true
+      photon: true
+      channel: current
+      continuous: false
+      development: false
+      root_path: ../src/pipelines/sales_medallion_gpt55
+      libraries:
+        - glob:
+            include: ../src/pipelines/sales_medallion_gpt55/transformations/**
+      configuration:
+        catalog: ${var.catalog}
+        bronze_schema: ${var.bronze_schema}
+        silver_schema: ${var.silver_schema}
+        gold_schema: ${var.gold_schema}
+        source_path: ${var.source_path}
+      permissions:
+        - level: CAN_RUN
+          group_name: users

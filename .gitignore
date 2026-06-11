@@ -1,0 +1,33 @@
+## Remove root project Claude dir
+.claude/
+_deckbuild/
+_tpl_extract/
+
+## Remove all MCP Servers related to Databricks (Claude, Codex, Copilot, etc.)
+**/.agents/
+**/.ai-dev-kit/
+**/.claude/
+**/.codex/
+**/.github/
+**/.vscode/
+
+## Remove Databricks related files and directories - DABs and resources related to Databricks projects. 
+**/.databricks/
+
+**/.databricks-resources.json
+
+## Each directory can be related to a specific Databricks project, so we ignore all of them.
+**/.venv/
+**/.env
+**/__pycache__/
+**/desktop.ini
+
+**/.mcp.json
+**/sales_transactions.csv
+
+
+
+# Ignore nested git metadata in SDP_Fable5__cowork
+/sales_transactions__LLMs_Agent/SDP_Fable5__cowork/.git
+/sales_transactions__LLMs_Agent/SDP_Fable5__cowork/.git/**
+/sales_transactions__LLMs_Agent/SDP_Fable5__cowork/.git*

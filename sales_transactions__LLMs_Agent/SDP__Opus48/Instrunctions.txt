@@ -1,0 +1,40 @@
+
+using SDD - create requirements, design and task.md do build medallion architecture (bronze silver gold) tables . the file is located at volume /Volumes/cowork_op48/dw_raw/raw_data
+
+the layout of the csv file follows
+transaction_id,order_date,ship_date,customer_id,customer_age,gender,product_id,product_category,quantity,unit_price,discount_pct,city,state,payment_type,order_status,ingestion_date
+3316,2025-10-28,2025-10-26,CUST34172,7,M,PROD20926,Furniture,0,,9.71,Chicago,IL,COD,Cancelled,2026-05-31
+6281,2023-11-16,2023-11-20,CUST127492,-2,,PROD34396,Grocery,0,-21.007502240945104,,Dallas,TX,,Delivered,2026-05-31
+46566,2023-03-25,2023-03-26,CUST149426,133,,PROD39657,Fashion,1,,144.69,Los Angeles,CA,,Cancelled,2026-05-31
+27328,2023-06-03,2023-06-02,CUST5554,29,F,PROD36295,Sports,0,165.34,36.64,Chicago,IL,COD,Cancelled,2026-05-31
+36674,2023-09-16,2023-09-13,CUST116417,132,Male,PROD36086,Fashion,5,-1.6873376224026426,,San Diego,CA,,Returned,2026-05-31
+31289,2025-09-20,2025-09-28,CUST141264,5,,PROD12952,Fashion,8,-88.81333438335764,,Phoenix,AZ,COD,Delivered,2026-05-31
+36198,2024-02-27,2024-02-27,CUST176768,35,M,PROD10440,Sports,5,-34.05955696744546,,Philadelphia,PA,Card,Cancelled,2026-05-31
+11048,2025-08-05,2025-08-04,CUST92894,,,PROD34373,Grocery,8,36.93,76.76,San Antonio,TX,Crypto,Cancelled,2026-05-31
+2841,2025-02-26,2025-03-06,CUST44739,4,Female,PROD26290,Sports,4,160.76,,Chicago,IL,COD,Cancelled,2026-05-31
+27134,2024-03-06,2024-03-04,CUST152553,,,PROD21012,Electronics,-4,,98.61,Houston,TX,COD,Returned,2026-05-31
+7660,2024-12-25,2025-01-03,CUST87507,52,Female,PROD30194,Fashion,0,,79.84,Chicago,IL,,Cancelled,2026-05-31
+35966,2024-02-04,2024-02-04,CUST127132,-10,M,PROD3269,Electronics,-4,1994.08,,San Antonio,TX,,Returned,2026-05-31
+
+
+Generate a Serverless Spark Declarative Pipeline using SQL syntax when possible. This should read the raw .csv, following the following instructions.
+
+Use a separate UC schema for bronze, silver, and gold all within the catalog, named with cowork_op48. . Save pipelines name as pipeline_sales_medallion_op48_v1 and  
+Use new schemas during development and if you need to iterate then cleanup last used schema before retrying.
+
+Bronze tables should use schema evolution and add basic ingest time and source file metadata.
+
+Build, validate, deploy, and test bronze first and show results before continuing to other steps.
+
+Create silver tables as streaming tables that are cleaned and enriched, but do not deduplicate at this layer.
+
+In gold tables, treat small tables as SCD type 2 and treat the larger tables as SCD type 1.
+
+Simulate 2 aggregate tables in gold demonstrating common metrics for this type of data set.  The aggregate tables must be provided by the Gold Layer
+
+Bronze Layer must load all information as STRING
+Silver Layer must filter and cast all information
+Gold Layer must follow Star schema and fact, dimensional modelling
+
+provide the files for SSD and build the solution
+
