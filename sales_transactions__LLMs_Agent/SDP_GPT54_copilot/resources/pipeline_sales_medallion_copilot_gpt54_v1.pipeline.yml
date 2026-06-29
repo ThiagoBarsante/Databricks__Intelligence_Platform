@@ -1,0 +1,20 @@
+resources:
+  pipelines:
+    pipeline_sales_medallion_copilot_gpt54_v1:
+      name: pipeline_sales_medallion_copilot_gpt54_v1
+      catalog: ${var.catalog}
+      schema: ${var.bronze_schema}
+      serverless: true
+      continuous: false
+      channel: CURRENT
+      photon: true
+      root_path: ../src/pipeline_sales_medallion_copilot_gpt54_v1
+      libraries:
+        - glob:
+            include: ../src/pipeline_sales_medallion_copilot_gpt54_v1/transformations/**
+      configuration:
+        catalog_name: ${var.catalog}
+        input_path: ${var.input_path}
+        bronze_schema: ${var.bronze_schema}
+        silver_schema: ${var.silver_schema}
+        gold_schema: ${var.gold_schema}
