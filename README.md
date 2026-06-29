@@ -29,9 +29,9 @@ After the data pipeline deployed at Databricks, build CEO / CFO dashboards also 
 4. **The presentation** — the findings were packaged into an executive briefing
    (slides shown throughout this README and doc/ presentation slides).
 
-## The experiment: same brief, five frontier agents
+## The experiment: same brief, multiple frontier agents
 
-![Five frontier AI agents, one identical brief](img/2-Slide8.PNG)
+![Frontier AI agents, one identical brief](img/2-Slide8.PNG)
 
 The same task, the same single instruction file, and the same Spec-Driven
 Development (SDD) process were given independently to several **coding agent /
@@ -46,18 +46,34 @@ from the [sales transactions dataset](sales_transactions__LLMs_Agent/sales_trans
 | [SDP_Fable5__cowork](sales_transactions__LLMs_Agent/SDP_Fable5__cowork) | Claude Code | Claude Fable 5 | Direct build in the workspace |
 | [SDP_GPT53_codex](sales_transactions__LLMs_Agent/SDP_GPT53_codex) | GitHub Copilot | GPT-5.3 Codex | Databricks Asset Bundle (DAB) |
 | [SDP__GPT55](sales_transactions__LLMs_Agent/SDP__GPT55) | OpenAI Codex | GPT-5.5 | Databricks Asset Bundle (DAB) |
+| [SDP_GPT54_copilot](sales_transactions__LLMs_Agent/SDP_GPT54_copilot) | GitHub Copilot | GPT-5.4 | Databricks Asset Bundle (DAB) |
+| [databricks_genie](sales_transactions__LLMs_Agent/databricks_genie) | Databricks Genie | Databricks-native (Genie / Assistant) | Direct build in the workspace |
 
 ⭐ **Claude Opus 4.8** was ultimately selected as the foundation for further work —
 see the [full findings and verdict](sales_transactions__LLMs_Agent/README.md).
+
+The two deployment styles seen across the implementations:
+
+- **Direct build in the workspace** — the agent creates catalogs/schemas and
+  builds the pipeline straight into the Databricks workspace through its MCP
+  tooling (used by the Claude builds and the Databricks **Genie** implementation,
+  catalog `genie_dw`).
+- **Databricks Asset Bundle (DAB)** — the agent generates a `databricks.yml`
+  bundle with the pipeline as a versioned resource and ships it via
+  `databricks bundle validate / deploy / run` (used by the GPT builds, including
+  **GPT-5.4** via GitHub Copilot, catalog `copilot_gpt54`).
 
 ## Key finding: where the models diverged — data quality
 
 ![Where the models diverged: data quality](img/3-Slide9.PNG)
 
-From the same 100,000 raw rows, three agents/LLMs (Opus 4.8, Fable 5, GPT-5.5) enforced
-data-quality rules — invalid ages, negative prices/quantities, nulls, impossible
-ship dates — while two (Sonnet 4.6, GPT-5.3 Codex) passed every row through
-unfiltered.
+From the same 100,000 raw rows, most agents/LLMs (Opus 4.8, Fable 5, GPT-5.5,
+GPT-5.4, and Databricks Genie) enforced data-quality rules — invalid ages,
+negative prices/quantities, nulls, impossible ship dates — while two (Sonnet 4.6,
+GPT-5.3 Codex) passed every row through unfiltered. The filters had very
+different yields: Genie published 8,700 validated silver rows (8.7% pass rate)
+and GPT-5.4 published 18,302 (≈18.3%), reflecting how each model interpreted the
+same quality brief.
 
 **Action item:** don't assume a model will hunt for data-quality issues on its
 own — especially lower-cost models. Make remediation an explicit instruction.
