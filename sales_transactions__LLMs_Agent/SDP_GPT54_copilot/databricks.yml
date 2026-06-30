@@ -1,0 +1,29 @@
+bundle:
+  name: sales_medallion_copilot_gpt54
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog catalog for medallion tables.
+    default: copilot_gpt54
+  input_path:
+    description: Volume path containing the raw CSV source files.
+    default: /Volumes/copilot_gpt54/dw_raw/raw_data
+  bronze_schema:
+    description: Bronze schema used during development.
+    default: bronze_sales_medallion_dev_v1
+  silver_schema:
+    description: Silver schema used during development.
+    default: silver_sales_medallion_dev_v1
+  gold_schema:
+    description: Gold schema used during development.
+    default: gold_sales_medallion_dev_v1
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://<your-databricks-workspace>.cloud.databricks.com
