@@ -105,6 +105,19 @@ Point the agent at an instruction file:
 ```
 @Instrunctions.txt read the instructions and deploy the SDP solution at Databricks
 ```
+#### To run your Experiment with the same setup
+
+Create a new Catalog, Schema, and Volume, then upload a `.csv` file based on the sample archive provided at:
+
+```
+sales_transaction_data_raw/data/raw/sales_transactions.7z
+```
+
+Update the location in `Instructions.txt` for the model to be executed, then run the same command:
+
+```
+@Instructions.txt read the instructions and deploy the SDP solution on Databricks
+```
 
 ### Prompt to create the README.md (example — Claude Opus 4.8)
 
